@@ -66,8 +66,9 @@ package com.agilefusion.selenium.page_objects;
 
         public void selectVisaClassic() {
             if (!visaClassic.isSelected()) {
-                visaClassic.click();
+                visaPlatinumRewards.click();
             }
+            visaClassic.click();
         }
 
         public ApplicationTypePage clickNextbutton() throws Exception {

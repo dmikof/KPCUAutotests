@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.*;
 /**
  * Created by dmitrykovpak on 16/02/16.
  */
-public class CheckURLsLeadToKPCUTermsPage extends DriverFactory {
+public class CheckURLsLeadToKPCUTermsPageIT extends DriverFactory {
     @Test
     public void checkVisaPlatinumRewardsURL() throws Exception {
         loadLandingPage();
