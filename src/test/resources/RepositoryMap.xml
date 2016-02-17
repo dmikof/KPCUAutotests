@@ -89,10 +89,11 @@
     </linux>
     <osx>
         <driver id="googlechrome">
-            <version id="2.14">
+            <version id= "2.21">
                 <bitrate thirtytwobit="true" sixtyfourbit="true">
-                    <filelocation>http://chromedriver.storage.googleapis.com/2.14/chromedriver_mac32.zip</filelocation>
-                    <hash>64ef44893a87a0e470b60ff8f5fc83a588b78023</hash>
+                    <filelocation>http://chromedriver.storage.googleapis.com/2.21/chromedriver_mac32.zip
+                    </filelocation>
+                    <hash>49afcd80ab445c3085f8012180f7579b90afb364</hash>
                     <hashtype>sha1</hashtype>
                 </bitrate>
             </version>
