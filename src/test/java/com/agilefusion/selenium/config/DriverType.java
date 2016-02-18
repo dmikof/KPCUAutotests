@@ -3,7 +3,9 @@ package com.agilefusion.selenium.config;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -27,7 +29,11 @@ public enum DriverType implements DriverSetup {
         }
 
         public WebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-            return new FirefoxDriver(capabilities);
+            String xvfbPropsFile = System.getProperty("xvfb.display");
+            System.out.println("xvfbPropsFile = " + xvfbPropsFile);
+            FirefoxBinary ffox = new FirefoxBinary();
+            ffox.setEnvironmentProperty("DISPLAY", xvfbPropsFile);
+            return new FirefoxDriver(ffox, new FirefoxProfile(), capabilities );
         }
     },
     CHROME {
@@ -42,6 +48,8 @@ public enum DriverType implements DriverSetup {
         }
 
         public WebDriver getWebDriverObject(DesiredCapabilities capabilities) {
+
+
             return new ChromeDriver(capabilities);
         }
     },
