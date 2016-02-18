@@ -24,7 +24,7 @@ package com.agilefusion.selenium.page_objects;
         @FindBy(how = How.CSS, using = "#radio_2")
         private WebElement visaClassic;
 
-        @FindBy(how = How.CSS, using = "[data-test='button-next']")
+        @FindBy(how = How.CSS, using = ".next-button.md-button.md-ink-ripple:first-child")
         private WebElement nextButton;
 
         //@FindBy(how = How.CSS, using = "[data-test='button-back']")
@@ -71,9 +71,9 @@ package com.agilefusion.selenium.page_objects;
             visaClassic.click();
         }
 
-        public ApplicationTypePage clickNextbutton() throws Exception {
+        public PersonalPage clickNextbutton() throws Exception {
             nextButton.click();
-            return new ApplicationTypePage();
+            return new PersonalPage();
         }
 
         public String getVisaPlatinumRewardsText() {
