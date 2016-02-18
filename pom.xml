@@ -104,6 +104,20 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>com.github.zetten</groupId>
+                        <artifactId>xvfb-maven-plugin</artifactId>
+                        <version>1.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>wrap-tests</id>
+                                <goals>
+                                    <goal>run</goal>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>2.18.1</version>
@@ -127,6 +141,9 @@
                                 <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
                                 <webdriver.opera.driver>${webdriver.opera.driver}</webdriver.opera.driver>
                             </systemPropertyVariables>
+                            <environmentVariables>
+                                <DISPLAY>${xvfb.display}</DISPLAY>
+                            </environmentVariables>
                         </configuration>
                         <executions>
                             <execution>
