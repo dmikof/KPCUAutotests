@@ -3,6 +3,7 @@ package com.agilefusion.selenium.config;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -13,10 +14,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.openqa.selenium.remote.CapabilityType.PROXY;
 
@@ -48,9 +46,13 @@ public enum DriverType implements DriverSetup {
         }
 
         public WebDriver getWebDriverObject(DesiredCapabilities capabilities) {
-
-
-            return new ChromeDriver(capabilities);
+            String xvfbPropsFile = System.getProperty("xvfb.display");
+            Map<String, String> env = new HashMap<>();
+            env.put("DISPLAY", xvfbPropsFile);
+            ChromeDriverService service = new ChromeDriverService.Builder()
+                    .withEnvironment(env)
+                    .build();
+            return new ChromeDriver(service, capabilities);
         }
     },
     IE {
