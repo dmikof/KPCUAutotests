@@ -35,8 +35,9 @@ public class CheckCardTypeChangesInHeaderIT extends DriverFactory {
         LandingPage landingPage = new LandingPage();
         WebDriverWait wait = new WebDriverWait(getDriver(), 15, 100);
         wait.until(AdditionalConditions.angularHasFinishedProcessing());
-        //landingPage.selectVisaPlatinum();
+       //landingPage.selectVisaPlatinumRewards();
         landingPage.selectVisaClassic();
+        System.out.print(landingPage.getCardLableText());
         Assert.assertEquals(landingPage.getCardLableText(), "Visa Classic");
     }
 }

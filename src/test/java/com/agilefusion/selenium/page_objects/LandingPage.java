@@ -4,13 +4,16 @@ package com.agilefusion.selenium.page_objects;
  * Created by dmitrykovpak on 20/01/16.
  */
 
+    import org.openqa.selenium.JavascriptExecutor;
     import org.openqa.selenium.WebElement;
     import org.openqa.selenium.support.FindBy;
     import org.openqa.selenium.support.How;
     import org.openqa.selenium.support.PageFactory;
     import com.agilefusion.selenium.DriverFactory;
 
-    /**    .md-button.md-ink-ripple >
+    import static com.agilefusion.selenium.DriverFactory.getDriver;
+
+/**    .md-button.md-ink-ripple >
      * Created by dmitrykovpak on 23/12/15.
      */
     public class LandingPage {
@@ -24,11 +27,10 @@ package com.agilefusion.selenium.page_objects;
         @FindBy(how = How.CSS, using = "#radio_2")
         private WebElement visaClassic;
 
-        @FindBy(how = How.CSS, using = ".next-button.md-button.md-ink-ripple:first-child")
+        @FindBy(how = How.CSS, using = "[data-test='desktop-button-next']")
         private WebElement nextButton;
 
-        //@FindBy(how = How.CSS, using = "[data-test='button-back']")
-        //private WebElement backButton;
+
 
         //@FindBy(how = How.CSS, using = "[wizard-title='']")
         //public WebElement wizardTitle;
@@ -50,7 +52,7 @@ package com.agilefusion.selenium.page_objects;
 
 
         public LandingPage() throws Exception {
-            PageFactory.initElements(DriverFactory.getDriver(), this);
+            PageFactory.initElements(getDriver(), this);
         }
 
         public void selectVisaPlatinumRewards() {
@@ -64,10 +66,12 @@ package com.agilefusion.selenium.page_objects;
             }
         }
 
-        public void selectVisaClassic() {
-            if (!visaClassic.isSelected()) {
+        public void selectVisaClassic() throws Exception {
+            if (visaClassic.isSelected()) {
                 visaPlatinumRewards.click();
             }
+            ((JavascriptExecutor) getDriver())
+                    .executeScript("window.scrollTo(0, document.body.scrollHeight)");
             visaClassic.click();
         }
 
